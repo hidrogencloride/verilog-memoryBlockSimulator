@@ -15,7 +15,7 @@ timescale 1ns / 1ps
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Write WidthL 8 bits, Write Depth: 16 bits. Valid Flag "ON".
 // 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -63,12 +63,12 @@ module test_bench5;
 		#100;
         
 		// Add stimulus here
-		//part i :
+		//part i : reset FIFO, wait
 		rst = 1;
 		#30
 		rst = 0;
 		
-		//part ii
+		//part ii : write 3 data, read the data
 		@(posedge clk) 
 		//write 3
 		wr_en = 1;
@@ -87,7 +87,7 @@ module test_bench5;
 
 		#100;
 		
-		//part iii 
+		//part iii : write 3 data, read 2 data, write 14 data, reset.
 		rst = 1;
 		//write 3
 		#30 rst = 0;
@@ -131,17 +131,15 @@ module test_bench5;
 		#30
 		rst = 0;
     
-		//Part iv
+		//Part iv : read empty FIFO
 		//read empty
 		#100;
 		#30 rd_en = 1;
 		#30 rd_en = 0;
 		
-		//Part v
-		//write until full
+		//Part v : write until FIFO full
 		//WORKING ON THIS, THE FINAL PART
     
-
 	end
       
 endmodule
